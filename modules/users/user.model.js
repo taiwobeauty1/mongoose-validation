@@ -12,7 +12,7 @@ const userSchema = new Schema({
     email: {
         type: String,
         required: true,
-        lowercase: true,
+        lowwercase: true,
         unique: true,
     },
     password: {
@@ -20,6 +20,8 @@ const userSchema = new Schema({
         required: true,
         minLenght: [0, "Password too short"]
     },
-});
+},
+{timestamps: true}
+);
 
 module.exports = model("User", userSchema);
