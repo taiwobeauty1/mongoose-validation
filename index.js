@@ -1,5 +1,5 @@
 const express = require("express");
-const postsRouter = require("./modules/posts/posts.route");
+const {postsRouter} = require("./modules/posts/posts.route");
 const {dbConnect} = require("./config/dbConnect");
 const {authRouter} = require("./modules/users/auth.route");
 

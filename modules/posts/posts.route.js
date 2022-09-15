@@ -1,7 +1,10 @@
 const router = require("express").Router;
+
+const { authRequired } = require("../middlewares/authRequired");
+
 const {
     createPost,
-    getAllPost,
+    getAllPosts,
     deletePost,
     getSinglePost,
     updatePost
@@ -9,7 +12,12 @@ const {
 
 const postsRouter = router();
 
-postsRouter.route("/").get(getAllPost).post(createPost);
-postsRouter.route("/:postId").get(getSinglePost).patch(updatePost).delete(deletePost);
+postsRouter.route("/").all(authRequired).get(getAllPosts).post(createPost);
+postsRouter
+.route("/:postId")
+.all(authRequired)
+.get(getSinglePost)
+.patch(updatePost)
+.delete(deletePost);
 
-module.exports = postsRouter;
+module.exports = { postsRouter };
